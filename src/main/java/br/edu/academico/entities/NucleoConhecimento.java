@@ -1,0 +1,29 @@
+package br.edu.academico.entities;
+
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class NucleoConhecimento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String nome;
+    private String area;
+
+    @ManyToOne
+    private Usuario facilitador;
+
+    @ManyToMany
+    private List<Usuario> docentes;
+
+    @ManyToMany
+    private List<Disciplina> disciplinas;
+}
