@@ -15,7 +15,6 @@ function UserInformationForm({ initialData, onSave, onPhotoChange }) {
   });
   const [previewFoto, setPreviewFoto] = useState(null);
 
-  // Sincroniza o estado do formulário com os dados iniciais passados
   useEffect(() => {
     if (initialData) {
       setFormData({
@@ -128,7 +127,6 @@ function UserInformationForm({ initialData, onSave, onPhotoChange }) {
           </div>
         </div>
 
-        {/* Campos Nome, Email, UserName (para edição) */}
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="nome">Nome</label>
