@@ -1,5 +1,6 @@
 package com.Grupo4.editar_meus_dados.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -20,9 +21,9 @@ public class Informacoes {
     private LocalDateTime ultimoAcesso;
 
     @OneToOne(mappedBy = "informacoes")
+    @JsonIgnore
     private Usuario usuario;
 
-    // Constructors (****)
     public Informacoes() {
     }
 
@@ -33,7 +34,6 @@ public class Informacoes {
         this.ultimoAcesso = ultimoAcesso;
     }
 
-    // Getters e Setters (*****)
     public Long getId() {
         return id;
     }

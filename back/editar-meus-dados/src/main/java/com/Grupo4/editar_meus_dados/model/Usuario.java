@@ -11,45 +11,42 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    private String userName;
+
     @Column(nullable = false)
     private String nome;
 
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true)
-    private String userName;
-
     private LocalDate dataIngresso;
 
-    @Lob
-    @Column(columnDefinition = "BYTEA")
-    private byte[] foto;
+    @Column(length = 500)
+    private String fotoUrl;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false, orphanRemoval = true)
-    @JoinColumn(name = "informacoes_id", unique = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "informacoes_id")
     private Informacoes informacoes;
 
-    // Constructors (*****)
     public Usuario() {
     }
 
-    public Usuario(String nome, String email, String userName, LocalDate dataIngresso, byte[] foto, Informacoes informacoes) {
-        this.nome = nome;
-        this.email = email;
-        this.userName = userName;
-        this.dataIngresso = dataIngresso;
-        this.foto = foto;
-        this.informacoes = informacoes;
-    }
-
-    // Getters e Setters (*****)
+    
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getNome() {
@@ -68,14 +65,6 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public LocalDate getDataIngresso() {
         return dataIngresso;
     }
@@ -84,12 +73,12 @@ public class Usuario {
         this.dataIngresso = dataIngresso;
     }
 
-    public byte[] getFoto() {
-        return foto;
+    public String getFotoUrl() {
+        return fotoUrl;
     }
 
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
     }
 
     public Informacoes getInformacoes() {
@@ -98,5 +87,18 @@ public class Usuario {
 
     public void setInformacoes(Informacoes informacoes) {
         this.informacoes = informacoes;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+               "id=" + id +
+               ", userName='" + userName + '\'' +
+               ", nome='" + nome + '\'' +
+               ", email='" + email + '\'' +
+               ", dataIngresso=" + dataIngresso +
+               ", fotoUrl='" + fotoUrl + '\'' +
+               ", informacoes=" + informacoes +
+               '}';
     }
 }
